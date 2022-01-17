@@ -17,6 +17,15 @@
 
       <v-spacer />
 
+      <!-- Home Btn -->
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" to="/">
+            <v-icon> mdi-home-outline </v-icon>
+          </v-btn>
+        </template>
+        <span>Home</span>
+      </v-tooltip>
       <!-- Github Btn -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -25,7 +34,7 @@
             v-on="on"
             href="https://github.com/DiscreteTom/awsome-doctor-view"
           >
-            <v-icon>mdi-github</v-icon>
+            <v-icon> mdi-github </v-icon>
           </v-btn>
         </template>
         <span>View Source Code</span>
@@ -40,7 +49,7 @@
               $copyText(getUrl()).then(() => $bus.$emit('append-msg', 'Copied'))
             "
           >
-            <v-icon>mdi-share-variant</v-icon>
+            <v-icon> mdi-share-variant </v-icon>
           </v-btn>
         </template>
         <span>Copy Link</span>
