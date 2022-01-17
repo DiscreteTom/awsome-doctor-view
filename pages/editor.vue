@@ -360,8 +360,9 @@
 import CodeEditor from "../components/CodeEditor.vue";
 import TtBtn from "../components/TtBtn.vue";
 import WorkflowExecutor from "../components/WorkflowExecutor.vue";
-import * as yaml from "js-yaml";
-import * as prettier from "prettier";
+import yaml from "js-yaml";
+import prettier from "prettier";
+import babelParser from "prettier/parser-babel";
 
 const defaultData = {
   title: "",
@@ -499,6 +500,7 @@ export default {
     formatCode(stepIndex) {
       this.steps[stepIndex].js = prettier.format(this.steps[stepIndex].js, {
         parser: "babel",
+        plugins: [babelParser],
       });
     },
     fileChosen(event) {
