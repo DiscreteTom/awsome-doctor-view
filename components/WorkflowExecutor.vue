@@ -39,7 +39,9 @@
         </v-expansion-panel-header>
         <v-expansion-panel-content
           :color="
-            result.pending
+            result.markdown
+              ? '#181818'
+              : result.pending
               ? undefined
               : result.err
               ? 'red'
