@@ -1,6 +1,7 @@
 export default {
   state() {
     return {
+      workflows: process.env.workflows,
       region: "us-east-1",
       tempAk: "",
       tempSk: "",

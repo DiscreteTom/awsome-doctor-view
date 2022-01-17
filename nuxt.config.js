@@ -1,6 +1,11 @@
 import colors from "vuetify/es5/util/colors";
+import workflows from "./utils/workflow-loader";
 
 export default {
+  env: {
+    workflows,
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
