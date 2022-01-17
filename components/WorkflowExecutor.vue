@@ -1,6 +1,19 @@
 <template>
   <div>
     <h2>Diagnosing: {{ workflow.title }}</h2>
+    <v-expansion-panels v-if="workflow.description" class="my-3">
+      <v-expansion-panel>
+        <v-expansion-panel-header> Description </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <div
+            v-html="renderDescription()"
+            class="markdown-body"
+            style="padding: 10px"
+          ></div>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
+
     <v-text-field
       v-for="input in workflow.input"
       :key="input.label"
@@ -126,6 +139,9 @@ export default {
       this.workflowData = { ...this.workflow.data }; // copy
       this.started = false;
       this.results = [];
+    },
+    renderDescription() {
+      return this.$md.parse(this.workflow.description);
     },
   },
   mounted() {

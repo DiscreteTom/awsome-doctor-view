@@ -49,6 +49,21 @@
     <v-divider class="my-2" />
 
     <v-expansion-panels multiple accordion>
+      <!-- description -->
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          Description (Markdown)
+        </v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <code-editor
+            :dark="editorDark"
+            v-model="description"
+            height="200"
+            :showInvisibles="editorShowInvisible"
+          />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
       <!-- data -->
       <v-expansion-panel>
         <v-expansion-panel-header> Data </v-expansion-panel-header>
@@ -366,6 +381,7 @@ import babelParser from "prettier/parser-babel";
 
 const defaultData = {
   title: "",
+  description: "",
   workflowData: [],
   inputs: [],
   steps: [],
@@ -544,6 +560,7 @@ export default {
     computedWorkflow() {
       let result = {
         title: this.title,
+        description: this.description,
         data: {},
         input: this.inputs,
         steps: this.steps,
