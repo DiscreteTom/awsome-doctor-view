@@ -1,12 +1,25 @@
 <template>
   <v-app dark>
     <v-navigation-drawer v-model="leftDrawer" clipped fixed app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6"> Services </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider />
+
       <v-list>
-        <v-list-item v-for="page in pages" :key="page.text" exact :to="page.to">
+        <v-list-item
+          v-for="(value, key) in $store.state.workflows"
+          :key="key"
+          exact
+          :to="`/workflow/${key}/`"
+        >
           <v-list-item-action>
-            <v-icon> {{ page.icon }} </v-icon>
+            <v-icon> mdi-cloud-outline </v-icon>
           </v-list-item-action>
-          <v-list-item-content>{{ page.text }}</v-list-item-content>
+          <v-list-item-content>{{ key }}</v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -87,7 +100,6 @@ export default {
     return {
       leftDrawer: true,
       messages: [],
-      pages: [],
     };
   },
   methods: {
