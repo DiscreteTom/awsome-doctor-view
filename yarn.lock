@@ -2762,6 +2762,11 @@ brace-expansion@^1.1.7:
     balanced-match "^1.0.0"
     concat-map "0.0.1"
 
+brace@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/brace/-/brace-0.11.1.tgz#4896fcc9d544eef45f4bb7660db320d3b379fe58"
+  integrity sha1-SJb8ydVE7vRfS7dmDbMg07N5/lg=
+
 braces@^2.3.1, braces@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/braces/-/braces-2.3.2.tgz#5979fd3f14cd531565e5fa2df1abfff1dfaee729"
@@ -7096,7 +7101,7 @@ prepend-http@^1.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-1.0.4.tgz#d4f4562b0ce3696e41ac52d0e002e57a635dc6dc"
   integrity sha1-1PRWKwzjaW5BrFLQ4ALlemNdxtw=
 
-"prettier@^1.18.2 || ^2.0.0":
+"prettier@^1.18.2 || ^2.0.0", prettier@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
   integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
@@ -8652,6 +8657,13 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue2-ace-editor@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/vue2-ace-editor/-/vue2-ace-editor-0.0.15.tgz#569b208e54ae771ae1edd3b8902ac42f0edc74e3"
+  integrity sha512-e3TR9OGXc71cGpvYcW068lNpRcFt3+OONCC81oxHL/0vwl/V3OgqnNMw2/RRolgQkO/CA5AjqVHWmANWKOtNnQ==
+  dependencies:
+    brace "^0.11.0"
 
 vue@^2.6.12, vue@^2.6.14:
   version "2.6.14"
