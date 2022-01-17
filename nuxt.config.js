@@ -82,6 +82,6 @@ export default {
   build: {},
 
   router: {
-    base: "/doctor/",
+    base: "/awsome-doctor/",
   },
 };
