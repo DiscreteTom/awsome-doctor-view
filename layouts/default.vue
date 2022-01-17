@@ -52,6 +52,15 @@
         </template>
         <span>View Source Code</span>
       </v-tooltip>
+      <!-- Editor Btn -->
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on" to="/editor">
+            <v-icon> mdi-circle-edit-outline </v-icon>
+          </v-btn>
+        </template>
+        <span>Editor</span>
+      </v-tooltip>
       <!-- Share Btn -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
