@@ -373,8 +373,6 @@ const defaultData = {
   editingIndex: 0,
   editorDark: true,
   editorShowInvisible: true,
-  currentFilePath: null,
-  currentFileName: null,
   openUrlDialog: false,
   externalUrl: "",
   openUrlDialogErr: null,
@@ -422,8 +420,6 @@ export default {
         .get(this.externalUrl)
         .then((res) => {
           this.applyYaml(res.data);
-          this.currentFilePath = null;
-          this.currentFileName = null;
           this.openUrlDialog = false;
           this.externalUrl = "";
           this.openingExternalUrl = false;
