@@ -47,6 +47,10 @@ export default {
       });
 
       this.$bus.$emit("append-msg", "Saved");
+      this.$bus.$emit("configure-aws", {
+        accessKeyId: this.tempAk,
+        secretAccessKey: this.tempSk,
+      });
     },
   },
   mounted() {

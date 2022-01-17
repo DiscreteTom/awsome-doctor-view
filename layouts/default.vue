@@ -91,6 +91,7 @@
 
 <script>
 import VSnackbars from "v-snackbars";
+import executor from "../executor-core";
 
 export default {
   components: {
@@ -109,6 +110,10 @@ export default {
   },
   mounted() {
     this.$bus.$on("append-msg", (e) => this.messages.push(e));
+    this.$bus.$on("configure-aws", (arg) => {
+      executor.configure({ ...arg, region: this.$store.state.region });
+      this.messages.push("AWS SDK configured.");
+    });
   },
 };
 </script>
