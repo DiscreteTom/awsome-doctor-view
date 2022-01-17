@@ -508,7 +508,7 @@ export default {
       if (file) {
         var reader = new FileReader();
         reader.readAsText(file, "UTF-8");
-        reader.onload = function (evt) {
+        reader.onload = (evt) => {
           this.applyYaml(evt.target.result);
         };
       }
