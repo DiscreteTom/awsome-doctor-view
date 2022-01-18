@@ -59,6 +59,7 @@
                 :dark="editorDark"
                 v-model="description"
                 height="200"
+                lang="markdown"
                 :showInvisibles="editorShowInvisible"
               />
             </v-expansion-panel-content>

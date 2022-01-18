@@ -3,7 +3,7 @@
     <ace-editor
       ref="aceEditor"
       @init="editorInit"
-      lang="javascript"
+      :lang="lang"
       :theme="theme"
       :width="width"
       :height="height"
@@ -22,6 +22,10 @@ export default {
     value: String,
     scrollPastEnd: Number,
     showInvisibles: Boolean,
+    lang: {
+      type: String,
+      default: "javascript",
+    },
   },
   components: {
     "ace-editor": require("vue2-ace-editor"),
@@ -30,6 +34,7 @@ export default {
     editorInit: function (editor) {
       require("brace/ext/language_tools");
       require("brace/mode/javascript");
+      require("brace/mode/markdown");
       require(`brace/theme/chrome`);
       require(`brace/theme/twilight`);
       require("brace/snippets/javascript");
