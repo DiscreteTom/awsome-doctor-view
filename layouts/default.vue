@@ -45,7 +45,7 @@
           <v-btn
             icon
             v-on="on"
-            href="https://github.com/DiscreteTom/awsome-doctor-view"
+            href="https://github.com/DiscreteTom/awsome-doctor"
           >
             <v-icon> mdi-github </v-icon>
           </v-btn>
