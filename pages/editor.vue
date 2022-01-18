@@ -48,195 +48,232 @@
 
     <v-divider class="my-2" />
 
-    <v-expansion-panels multiple accordion>
-      <!-- description -->
-      <v-expansion-panel>
-        <v-expansion-panel-header> Description </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <code-editor
-            :dark="editorDark"
-            v-model="description"
-            height="200"
-            :showInvisibles="editorShowInvisible"
-          />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <!-- data -->
-      <v-expansion-panel>
-        <v-expansion-panel-header> Data </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-row
-            v-for="(data, i) in workflowData"
-            :key="i"
-            class="align-center"
-            dense
-          >
-            <v-col cols="3">
-              <v-text-field label="Key" v-model="data.key" hide-details />
-            </v-col>
-            <v-col>
-              <v-text-field
-                label="Initial Value (YAML)"
-                v-model="data.value"
-                hide-details
-              />
-            </v-col>
-            <v-col>
-              <v-text-field
-                label="Rendered (YAML)"
-                :value="renderYaml(data.key, data.value)"
-                hide-details
-                disabled
-              />
-            </v-col>
-            <v-col cols="1" class="d-flex justify-center">
-              <tt-btn
-                tt="Remove Data"
-                icon="mdi-close"
-                @click="removeData(i)"
-                top
-              />
-            </v-col>
-          </v-row>
-          <v-btn @click="addData" class="mt-3">Add Data</v-btn>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <!-- inputs -->
-      <v-expansion-panel>
-        <v-expansion-panel-header> Inputs </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-row
-            v-for="(input, i) in inputs"
-            :key="i"
-            class="align-center"
-            dense
-          >
-            <v-col>
-              <v-text-field label="Label" v-model="input.label" hide-details />
-            </v-col>
-            <v-col>
-              <v-text-field
-                label="Placeholder"
-                v-model="input.placeholder"
-                hide-details
-              />
-            </v-col>
-            <v-col>
-              <v-select
-                label="Store"
-                v-model="input.store"
-                :items="workflowData.map((d) => d.key)"
-                hide-details
-              />
-            </v-col>
-            <v-col cols="1" class="d-flex justify-center">
-              <tt-btn
-                tt="Remove Input"
-                icon="mdi-close"
-                @click="removeInput(i)"
-                top
-              />
-            </v-col>
-          </v-row>
-          <v-btn @click="addInput" class="mt-3">Add Input</v-btn>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-
-      <!-- steps -->
-      <v-expansion-panel>
-        <v-expansion-panel-header> Steps </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <v-row v-for="(step, i) in steps" :key="i" class="align-center" dense>
-            <v-col cols="3">
-              <v-text-field label="Name" v-model="step.name" hide-details />
-            </v-col>
-            <v-col>
+    <v-row>
+      <v-col :cols="testAtBottom ? 12 : 6">
+        <v-expansion-panels multiple accordion>
+          <!-- description -->
+          <v-expansion-panel>
+            <v-expansion-panel-header> Description </v-expansion-panel-header>
+            <v-expansion-panel-content>
               <code-editor
                 :dark="editorDark"
-                v-model="step.js"
+                v-model="description"
                 height="200"
                 :showInvisibles="editorShowInvisible"
               />
-            </v-col>
-            <v-col cols="1" class="d-flex flex-column align-center">
-              <tt-btn
-                tt="Remove Step"
-                icon="mdi-close"
-                @click="removeStep(i)"
-                top
-              />
-              <tt-btn
-                tt="Expand"
-                icon="mdi-arrow-expand"
-                @click="expand(i)"
-                top
-              />
-              <tt-btn
-                tt="Format Code"
-                icon="mdi-code-json"
-                @click="formatCode(i)"
-                top
-              />
-            </v-col>
-          </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-          <div class="d-flex">
-            <v-btn @click="addStep" class="mt-3">Add Step</v-btn>
-            <v-tooltip top>
-              <template v-slot:activator="{ on }">
-                <span v-on="on">
-                  <v-switch
-                    class="ml-3"
-                    v-model="editorDark"
-                    inset
+          <!-- data -->
+          <v-expansion-panel>
+            <v-expansion-panel-header> Data </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row
+                v-for="(data, i) in workflowData"
+                :key="i"
+                class="align-center"
+                dense
+              >
+                <v-col cols="3">
+                  <v-text-field label="Key" v-model="data.key" hide-details />
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Initial Value (YAML)"
+                    v-model="data.value"
                     hide-details
-                    color="black"
-                  ></v-switch>
-                </span>
-              </template>
-              <span>Dark Mode</span>
-            </v-tooltip>
-            <v-tooltip top>
-              <template v-slot:activator="{ on }">
-                <span v-on="on">
-                  <v-switch
-                    class="ml-3"
-                    v-model="editorShowInvisible"
-                    inset
+                  />
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Rendered (YAML)"
+                    :value="renderYaml(data.key, data.value)"
                     hide-details
-                  ></v-switch>
-                </span>
-              </template>
-              <span>Show Invisibles</span>
-            </v-tooltip>
-            <v-tooltip top>
-              <template v-slot:activator="{ on }">
-                <span v-on="on">
-                  <v-switch
-                    class="ml-3"
-                    v-model="editorAutoFormat"
-                    inset
-                    hide-details
-                    color="yellow"
-                  ></v-switch>
-                </span>
-              </template>
-              <span>Format on Save</span>
-            </v-tooltip>
-          </div>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+                    disabled
+                  />
+                </v-col>
+                <v-col cols="1" class="d-flex justify-center">
+                  <tt-btn
+                    tt="Remove Data"
+                    icon="mdi-close"
+                    @click="removeData(i)"
+                    top
+                  />
+                </v-col>
+              </v-row>
+              <v-btn @click="addData" class="mt-3">Add Data</v-btn>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
 
-      <!-- test -->
-      <v-expansion-panel>
-        <v-expansion-panel-header> Test </v-expansion-panel-header>
-        <v-expansion-panel-content>
-          <workflow-executor :workflow="computedWorkflow" />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
+          <!-- inputs -->
+          <v-expansion-panel>
+            <v-expansion-panel-header> Inputs </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row
+                v-for="(input, i) in inputs"
+                :key="i"
+                class="align-center"
+                dense
+              >
+                <v-col>
+                  <v-text-field
+                    label="Label"
+                    v-model="input.label"
+                    hide-details
+                  />
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Placeholder"
+                    v-model="input.placeholder"
+                    hide-details
+                  />
+                </v-col>
+                <v-col>
+                  <v-select
+                    label="Store"
+                    v-model="input.store"
+                    :items="workflowData.map((d) => d.key)"
+                    hide-details
+                  />
+                </v-col>
+                <v-col cols="1" class="d-flex justify-center">
+                  <tt-btn
+                    tt="Remove Input"
+                    icon="mdi-close"
+                    @click="removeInput(i)"
+                    top
+                  />
+                </v-col>
+              </v-row>
+              <v-btn @click="addInput" class="mt-3">Add Input</v-btn>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+
+          <!-- steps -->
+          <v-expansion-panel>
+            <v-expansion-panel-header> Steps </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row
+                v-for="(step, i) in steps"
+                :key="i"
+                class="align-center"
+                dense
+              >
+                <v-col cols="3">
+                  <v-text-field label="Name" v-model="step.name" hide-details />
+                </v-col>
+                <v-col>
+                  <code-editor
+                    :dark="editorDark"
+                    v-model="step.js"
+                    height="200"
+                    :showInvisibles="editorShowInvisible"
+                  />
+                </v-col>
+                <v-col cols="1" class="d-flex flex-column align-center">
+                  <tt-btn
+                    tt="Remove Step"
+                    icon="mdi-close"
+                    @click="removeStep(i)"
+                    top
+                  />
+                  <tt-btn
+                    tt="Expand"
+                    icon="mdi-arrow-expand"
+                    @click="expand(i)"
+                    top
+                  />
+                  <tt-btn
+                    tt="Format Code"
+                    icon="mdi-code-json"
+                    @click="formatCode(i)"
+                    top
+                  />
+                </v-col>
+              </v-row>
+
+              <div class="d-flex">
+                <v-btn @click="addStep" class="mt-3">Add Step</v-btn>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <span v-on="on">
+                      <v-switch
+                        class="ml-3"
+                        v-model="editorDark"
+                        inset
+                        hide-details
+                        color="black"
+                      ></v-switch>
+                    </span>
+                  </template>
+                  <span>Dark Mode</span>
+                </v-tooltip>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <span v-on="on">
+                      <v-switch
+                        class="ml-3"
+                        v-model="editorShowInvisible"
+                        inset
+                        hide-details
+                      ></v-switch>
+                    </span>
+                  </template>
+                  <span>Show Invisibles</span>
+                </v-tooltip>
+                <v-tooltip top>
+                  <template v-slot:activator="{ on }">
+                    <span v-on="on">
+                      <v-switch
+                        class="ml-3"
+                        v-model="editorAutoFormat"
+                        inset
+                        hide-details
+                        color="yellow"
+                      ></v-switch>
+                    </span>
+                  </template>
+                  <span>Format on Save</span>
+                </v-tooltip>
+              </div>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+        <!-- test -->
+        <v-card v-if="testAtBottom" class="mt-3">
+          <v-card-title>
+            <span class="mr-3"> Test </span>
+            <tt-btn
+              tt="Move To Right"
+              icon="mdi-dock-right"
+              top
+              @click="testAtBottom = false"
+            />
+          </v-card-title>
+          <v-card-text>
+            <workflow-executor :workflow="computedWorkflow" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="6" v-if="!testAtBottom">
+        <v-card>
+          <v-card-title>
+            <span class="mr-3"> Test </span>
+            <tt-btn
+              tt="Move To Bottom"
+              icon="mdi-dock-bottom"
+              top
+              @click="testAtBottom = true"
+            />
+          </v-card-title>
+          <v-card-text>
+            <workflow-executor :workflow="computedWorkflow" />
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <v-dialog
       v-model="fullscreenEdit"
@@ -392,6 +429,7 @@ const defaultData = {
   openUrlDialogErr: null,
   openingExternalUrl: false,
   editorAutoFormat: true,
+  testAtBottom: false,
 };
 
 // https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
