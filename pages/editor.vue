@@ -24,7 +24,7 @@
         />
         <tt-btn
           bottom
-          @click="$refs.fileInput.click()"
+          @click="openFile"
           class="ml-3"
           tt="Load From YAML File"
           icon="mdi-folder-open-outline"
@@ -435,9 +435,10 @@ const defaultData = {
   openingExternalUrl: false,
   editorAutoFormat: true,
   testAtBottom: false,
+  fileHandle: null,
 };
 
-// https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
+// Ref: https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
 function download(data, filename, type) {
   var file = new Blob([data], { type: type });
   if (window.navigator.msSaveOrOpenBlob)
@@ -456,6 +457,16 @@ function download(data, filename, type) {
       window.URL.revokeObjectURL(url);
     }, 0);
   }
+}
+
+// Ref: https://web.dev/file-system-access/
+async function writeFile(fileHandle, contents) {
+  // Create a FileSystemWritableFileStream to write to.
+  const writable = await fileHandle.createWritable();
+  // Write the contents of the file to the stream.
+  await writable.write(contents);
+  // Close the file and write the contents to disk.
+  await writable.close();
 }
 
 export default {
@@ -530,11 +541,36 @@ export default {
       }
       this.steps = result;
     },
-    saveFile() {
+    async saveFile() {
       if (this.editorAutoFormat) {
         this.formatAllCode();
       }
-      download(yaml.dump(this.computedWorkflow), "workflow.yml", "yml");
+
+      if (this.fileHandle === null && window.showSaveFilePicker !== undefined) {
+        // chrome, use File System Access API
+        const options = {
+          types: [
+            {
+              description: "Workflow",
+              accept: {
+                "text/plain": [".yml"],
+              },
+            },
+          ],
+        };
+        const handle = await window.showSaveFilePicker(options);
+        if (handle) {
+          this.fileHandle = handle;
+        }
+      }
+
+      if (this.fileHandle) {
+        await writeFile(this.fileHandle, yaml.dump(this.computedWorkflow));
+        this.$bus.$emit("append-msg", "Saved");
+      } else {
+        // not chrome, traditional download
+        download(yaml.dump(this.computedWorkflow), "workflow.yml", "yml");
+      }
     },
     formatAllCode() {
       for (let i = 0; i < this.steps.length; ++i) {
@@ -555,6 +591,22 @@ export default {
         parser: "babel",
         plugins: [babelParser],
       });
+    },
+    async openFile() {
+      if (window.showOpenFilePicker !== undefined) {
+        // chrome, use File System Access API
+        let fileHandle;
+        [fileHandle] = await window.showOpenFilePicker();
+        if (fileHandle) {
+          this.fileHandle = fileHandle;
+          const file = await fileHandle.getFile();
+          const contents = await file.text();
+          this.applyYaml(contents);
+        }
+      } else {
+        // not chrome, traditional file picker
+        this.$refs.fileInput.click();
+      }
     },
     fileChosen(event) {
       let file = event.target.files[0];
