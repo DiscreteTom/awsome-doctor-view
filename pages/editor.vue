@@ -217,6 +217,7 @@
                         v-model="editorShowInvisible"
                         inset
                         hide-details
+                        color="white"
                       ></v-switch>
                     </span>
                   </template>
@@ -285,7 +286,7 @@
         class="d-flex flex-column"
         style="height: 100vh"
       >
-        <v-toolbar dark color="primary" class="flex-grow-0">
+        <v-toolbar dark class="flex-grow-0">
           <tt-btn
             tt="Exit Fullscreen"
             icon="mdi-close"
@@ -294,10 +295,12 @@
           />
           <v-toolbar-title class="ml-3">
             Editing Workflow:
-            <span class="text-decoration-underline"> {{ title }} </span>
+            <span class="text-decoration-underline">
+              {{ title || "Untitled workflow" }}
+            </span>
             Step:
             <span class="text-decoration-underline">
-              {{ steps[editingIndex].name }}
+              {{ steps[editingIndex].name || "Untitled step" }}
             </span>
           </v-toolbar-title>
           <v-spacer></v-spacer>
@@ -321,6 +324,7 @@
                   v-model="editorShowInvisible"
                   inset
                   hide-details
+                  color="white"
                 ></v-switch>
               </span>
             </template>
