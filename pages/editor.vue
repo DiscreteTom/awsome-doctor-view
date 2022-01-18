@@ -490,7 +490,7 @@ export default {
       );
     },
     addData() {
-      this.workflowData.push({ key: "", value: "" });
+      this.workflowData.push({ key: "", value: "''" });
     },
     addInput() {
       this.inputs.push({ label: "", placeholder: "", store: "" });
