@@ -14,7 +14,7 @@
       />
 
       <!-- toolbar -->
-      <div class="d-flex align-center">
+      <div class="d-flex align-center ml-3">
         <tt-btn
           bottom
           @click="saveFile"
@@ -51,9 +51,7 @@
     <v-expansion-panels multiple accordion>
       <!-- description -->
       <v-expansion-panel>
-        <v-expansion-panel-header>
-          Description (Markdown)
-        </v-expansion-panel-header>
+        <v-expansion-panel-header> Description </v-expansion-panel-header>
         <v-expansion-panel-content>
           <code-editor
             :dark="editorDark"
@@ -381,7 +379,7 @@ import babelParser from "prettier/parser-babel";
 
 const defaultData = {
   title: "",
-  description: "",
+  description: "### Markdown Here",
   workflowData: [],
   inputs: [],
   steps: [],
