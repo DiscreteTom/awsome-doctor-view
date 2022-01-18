@@ -89,9 +89,16 @@
     </v-footer>
 
     <v-snackbars
-      :messages.sync="messages"
+      :messages.sync="topMessages"
       :timeout="5000"
       top
+      right
+      app
+    ></v-snackbars>
+    <v-snackbars
+      :messages.sync="bottomMessages"
+      :timeout="5000"
+      bottom
       right
       app
     ></v-snackbars>
@@ -109,7 +116,8 @@ export default {
   data() {
     return {
       leftDrawer: true,
-      messages: [],
+      topMessages: [],
+      bottomMessages: [],
     };
   },
   methods: {
@@ -118,10 +126,12 @@ export default {
     },
   },
   mounted() {
-    this.$bus.$on("append-msg", (e) => this.messages.push(e));
+    this.$bus.$on("append-msg", (e) => this.topMessages.push(e));
+    this.$bus.$on("append-msg-top", (e) => this.topMessages.push(e));
+    this.$bus.$on("append-msg-bottom", (e) => this.bottomMessages.push(e));
     this.$bus.$on("configure-aws", (arg) => {
       executor.configure({ ...arg, region: this.$store.state.region });
-      this.messages.push("AWS SDK configured.");
+      this.topMessages.push("AWS SDK configured.");
     });
   },
 };
