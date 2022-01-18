@@ -14,8 +14,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - awsome-doctor-view",
-    title: "awsome-doctor-view",
+    titleTemplate: "%s - Awsome Doctor",
+    title: "Awsome Doctor",
     htmlAttrs: {
       lang: "en",
     },
