@@ -548,23 +548,29 @@ export default {
 
       if (this.fileHandle === null && window.showSaveFilePicker !== undefined) {
         // chrome, use File System Access API
-        const options = {
-          types: [
-            {
-              description: "Workflow",
-              accept: {
-                "text/plain": [".yml"],
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: `${this.title || "workflow"}.yml`,
+            types: [
+              {
+                description: "YAML Workflow",
+                accept: {
+                  "text/yaml": [".yml", ".yaml"],
+                },
               },
-            },
-          ],
-        };
-        const handle = await window.showSaveFilePicker(options);
-        if (handle) {
-          this.fileHandle = handle;
+            ],
+          });
+          if (handle) {
+            this.fileHandle = handle;
+          }
+        } catch {
+          // canceled
+          return;
         }
       }
 
       if (this.fileHandle) {
+        this.$bus.$emit("append-msg-bottom", "Saving workflow...");
         await writeFile(this.fileHandle, yaml.dump(this.computedWorkflow));
         this.$bus.$emit("append-msg-bottom", "Saved");
       } else {
@@ -596,7 +602,12 @@ export default {
       if (window.showOpenFilePicker !== undefined) {
         // chrome, use File System Access API
         let fileHandle;
-        [fileHandle] = await window.showOpenFilePicker();
+        try {
+          [fileHandle] = await window.showOpenFilePicker();
+        } catch {
+          // canceled
+          return;
+        }
         if (fileHandle) {
           this.fileHandle = fileHandle;
           const file = await fileHandle.getFile();
