@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import executor from "../executor-core";
+import executor from "awsome-doctor-core";
 
 export default {
   props: {

@@ -107,7 +107,7 @@
 
 <script>
 import VSnackbars from "v-snackbars";
-import executor from "../executor-core";
+import executor from "awsome-doctor-core";
 
 export default {
   components: {
