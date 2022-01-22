@@ -13,7 +13,7 @@
     "@aws-sdk/client-elastic-load-balancing-v2": "^3.47.0",
     "@aws-sdk/client-rds": "^3.47.0",
     "@nuxtjs/axios": "^5.13.6",
-    "awsome-doctor-core": "DiscreteTom/awsome-doctor-core",
+    "awsome-doctor-core": "^0.2.0",
     "core-js": "^3.19.3",
     "js-yaml": "^4.1.0",
     "marked": "^4.0.10",

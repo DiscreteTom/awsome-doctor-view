@@ -2614,9 +2614,10 @@ autoprefixer@^9.6.1:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-awsome-doctor-core@DiscreteTom/awsome-doctor-core:
-  version "0.1.0"
-  resolved "https://codeload.github.com/DiscreteTom/awsome-doctor-core/tar.gz/acfd1fc6c3f97037965bae5403beace62d51659a"
+awsome-doctor-core@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/awsome-doctor-core/-/awsome-doctor-core-0.2.0.tgz#2686098847b05450b453acad7fc63cb9f0b87810"
+  integrity sha512-jqHESYvVW8bYTBg9xegGpUKKEbw2FJmtBTuqlMPthpp/dCCJ7Rfr+RDoWNFjABTCTfMmUgv2pg+j9M2T99It2w==
   dependencies:
     "@aws-sdk/client-ec2" "^3.47.0"
     "@aws-sdk/client-elastic-load-balancing-v2" "^3.47.0"
