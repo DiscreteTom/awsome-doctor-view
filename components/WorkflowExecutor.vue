@@ -32,18 +32,18 @@
               ? undefined
               : result.err
               ? 'red'
-              : result.info
-              ? 'blue'
-              : 'green'
+              : result.ok
+              ? 'green'
+              : 'blue'
           "
           :expand-icon="
             result.pending
               ? undefined
               : result.err
               ? 'mdi-alert-circle-outline'
-              : result.info
-              ? 'mdi-information-outline'
-              : 'mdi-check'
+              : result.ok
+              ? 'mdi-check'
+              : 'mdi-information-outline'
           "
           :disable-icon-rotate="!result.pending"
         >
@@ -58,20 +58,20 @@
               ? undefined
               : result.err
               ? 'red'
-              : result.info
-              ? 'blue'
-              : 'green'
+              : result.ok
+              ? 'green'
+              : 'blue'
           "
         >
           <v-progress-circular indeterminate v-if="result.pending" />
           <div v-else>
             <div
               v-if="result.markdown"
-              v-html="result.err || result.info || result.ok"
+              v-html="result.err || result.ok || result.info"
               class="markdown-body"
               style="background: white; padding: 10px"
             ></div>
-            <div v-else>{{ result.err || result.info || result.ok }}</div>
+            <div v-else>{{ result.err || result.ok || result.info }}</div>
           </div>
         </v-expansion-panel-content>
       </v-expansion-panel>
