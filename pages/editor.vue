@@ -658,6 +658,7 @@ export default {
       }
       this.inputs = content.input;
       this.steps = content.steps;
+      this.description = content.description || "";
     },
   },
   computed: {
