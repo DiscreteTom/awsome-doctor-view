@@ -570,9 +570,9 @@ export default {
       }
 
       if (this.fileHandle) {
-        this.$bus.$emit("append-msg-bottom", "Saving workflow...");
+        this.$bus.$emit("append-msg", "Saving workflow...");
         await writeFile(this.fileHandle, yaml.dump(this.computedWorkflow));
-        this.$bus.$emit("append-msg-bottom", "Saved");
+        this.$bus.$emit("append-msg", "Saved");
       } else {
         // not chrome, traditional download
         download(yaml.dump(this.computedWorkflow), "workflow.yml", "yml");
