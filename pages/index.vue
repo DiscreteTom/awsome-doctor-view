@@ -17,8 +17,9 @@
       placeholder="us-east-1"
     />
 
-    <v-btn @click="save" color="primary">Save</v-btn>
-    <v-btn @click="resetForm">Reset</v-btn>
+    <v-btn class="mr-2" @click="save" color="primary"> Save </v-btn>
+    <v-btn class="mr-2" @click="restoreForm"> Restore </v-btn>
+    <v-btn class="mr-2" @click="clearForm"> Clear </v-btn>
   </div>
 </template>
 
@@ -34,10 +35,15 @@ export default {
     };
   },
   methods: {
-    resetForm() {
+    restoreForm() {
       this.region = this.$store.state.region;
       this.tempAk = this.$store.state.tempAk;
       this.tempSk = this.$store.state.tempSk;
+    },
+    clearForm() {
+      this.region = "";
+      this.tempAk = "";
+      this.tempSk = "";
     },
     save() {
       this.$store.commit("updateConfig", {
@@ -54,7 +60,7 @@ export default {
     },
   },
   mounted() {
-    this.resetForm();
+    this.restoreForm();
   },
 };
 </script>
