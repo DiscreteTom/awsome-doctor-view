@@ -162,7 +162,11 @@
                 dense
               >
                 <v-col cols="3">
-                  <v-text-field label="Name" v-model="step.name" hide-details />
+                  <v-text-field
+                    :label="`Name (Step ${i + 1})`"
+                    v-model="step.name"
+                    hide-details
+                  />
                 </v-col>
                 <v-col>
                   <code-editor

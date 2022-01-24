@@ -25,7 +25,7 @@
     <v-btn @click="reset" class="mx-3"> Reset </v-btn>
 
     <v-expansion-panels v-if="started" class="my-3">
-      <v-expansion-panel v-for="result in results" :key="result.name">
+      <v-expansion-panel v-for="(result, i) in results" :key="result.name">
         <v-expansion-panel-header
           :color="
             result.pending
@@ -47,7 +47,7 @@
           "
           :disable-icon-rotate="!result.pending"
         >
-          {{ result.name }}
+          {{ i + 1 }}. {{ result.name }}
           <v-progress-circular indeterminate v-if="result.pending" :size="15" />
         </v-expansion-panel-header>
         <v-expansion-panel-content
