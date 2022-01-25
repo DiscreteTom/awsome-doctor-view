@@ -88,7 +88,16 @@
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
 
-    <v-snackbars :messages.sync="messages" :timeout="5000" bottom right app />
+    <v-snackbars :messages.sync="messages" :timeout="5000" bottom right app>
+      <template v-slot:action="{ close }">
+        <div class="d-flex flex-column">
+          <v-btn icon @click="close()">
+            <v-icon> mdi-close </v-icon>
+          </v-btn>
+          <div class="snackbar-progress" />
+        </div>
+      </template>
+    </v-snackbars>
   </v-app>
 </template>
 
@@ -138,3 +147,22 @@ export default {
   },
 };
 </script>
+
+<style>
+.snackbar-progress {
+  animation-name: hide-snackbar-progress;
+  border-bottom: solid;
+  animation-duration: 5000ms;
+  animation-timing-function: linear;
+}
+
+@keyframes hide-snackbar-progress {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}
+</style>
