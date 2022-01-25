@@ -656,12 +656,12 @@ export default {
     },
     handleKeyDown(e) {
       // ctrl shift s
-      if (e.keyCode === 83 && e.ctrlKey && e.shiftKey) {
+      if (e.key === "s" && e.ctrlKey && e.shiftKey) {
         e.preventDefault();
         this.saveFile(true);
       }
       // ctrl s
-      else if (e.keyCode === 83 && e.ctrlKey) {
+      else if (e.key === "s" && e.ctrlKey) {
         e.preventDefault();
         this.saveFile();
       }
