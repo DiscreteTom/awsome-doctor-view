@@ -16,10 +16,18 @@
       <!-- toolbar -->
       <div class="d-flex align-center ml-3">
         <tt-btn
+          v-if="fileHandle"
           bottom
           @click="saveFile"
           class="ml-3"
-          tt="Export New YAML File"
+          tt="Save (Ctrl+S)"
+          icon="mdi-content-save-check-outline"
+        />
+        <tt-btn
+          bottom
+          @click="saveFile(true)"
+          class="ml-3"
+          :tt="`Save As (Ctrl + ${fileHandle ? 'Shift + ' : ''}S)`"
           icon="mdi-content-save-outline"
         />
         <tt-btn
@@ -545,13 +553,16 @@ export default {
       }
       this.steps = result;
     },
-    async saveFile() {
+    async saveFile(newHandle = false) {
       if (this.editorAutoFormat) {
         this.formatAllCode();
       }
 
-      if (this.fileHandle === null && window.showSaveFilePicker !== undefined) {
-        // chrome, use File System Access API
+      if (
+        (newHandle || this.fileHandle === null) &&
+        window.showSaveFilePicker !== undefined
+      ) {
+        // chrome, use File System Access API to get fileHandle
         try {
           const handle = await window.showSaveFilePicker({
             suggestedName: `${this.title || "workflow"}.yml`,
@@ -644,8 +655,13 @@ export default {
       }
     },
     handleKeyDown(e) {
+      // ctrl shift s
+      if (e.keyCode === 83 && e.ctrlKey && e.shiftKey) {
+        e.preventDefault();
+        this.saveFile(true);
+      }
       // ctrl s
-      if (e.keyCode === 83 && e.ctrlKey) {
+      else if (e.keyCode === 83 && e.ctrlKey) {
         e.preventDefault();
         this.saveFile();
       }
