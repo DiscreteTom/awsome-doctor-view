@@ -27,14 +27,14 @@
           bottom
           @click="saveFile(true)"
           class="ml-3"
-          :tt="`Save As (Ctrl + ${fileHandle ? 'Shift + ' : ''}S)`"
+          :tt="`Save As (Ctrl+${fileHandle ? 'Shift+' : ''}S)`"
           icon="mdi-content-save-outline"
         />
         <tt-btn
           bottom
           @click="openFile"
           class="ml-3"
-          tt="Open (Ctrl + O)"
+          tt="Open (Ctrl+O)"
           icon="mdi-folder-open-outline"
         />
         <tt-btn
