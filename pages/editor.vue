@@ -48,8 +48,8 @@
           bottom
           @click="reset"
           class="ml-3"
-          tt="Reset Editor"
-          icon="mdi-delete-outline"
+          tt="Clear"
+          icon="mdi-close-circle-outline"
         />
       </div>
     </div>
