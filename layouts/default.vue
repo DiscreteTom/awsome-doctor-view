@@ -117,6 +117,23 @@ export default {
       executor.configure({ ...arg, region: this.$store.state.region });
       this.messages.push("AWS SDK configured.");
     });
+
+    // restore ak/sk from local storage
+    if (typeof Storage !== "undefined") {
+      let ak = localStorage.getItem("tempAk");
+      let sk = localStorage.getItem("tempSk");
+      if (ak && sk) {
+        this.$store.commit("updateConfig", {
+          persistCredentials: true,
+          tempAk: ak,
+          tempSk: sk,
+        });
+        this.$bus.$emit("configure-aws", {
+          accessKeyId: ak,
+          secretAccessKey: sk,
+        });
+      }
+    }
   },
 };
 </script>

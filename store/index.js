@@ -9,6 +9,7 @@ export default {
       editorDarkMode: true,
       editorShowInvisibles: true,
       editorAutoFormat: true,
+      persistCredentials: false,
     };
   },
   mutations: {
