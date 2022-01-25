@@ -34,7 +34,7 @@
           bottom
           @click="openFile"
           class="ml-3"
-          tt="Load From YAML File"
+          tt="Open (Ctrl + O)"
           icon="mdi-folder-open-outline"
         />
         <tt-btn
@@ -659,11 +659,12 @@ export default {
       if (e.key === "s" && e.ctrlKey && e.shiftKey) {
         e.preventDefault();
         this.saveFile(true);
-      }
-      // ctrl s
-      else if (e.key === "s" && e.ctrlKey) {
+      } else if (e.key === "s" && e.ctrlKey) {
         e.preventDefault();
         this.saveFile();
+      } else if (e.key === "o" && e.ctrlKey) {
+        e.preventDefault();
+        this.openFile();
       }
     },
     applyYaml(txt) {
