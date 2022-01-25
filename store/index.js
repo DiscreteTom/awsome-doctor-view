@@ -10,6 +10,7 @@ export default {
       editorShowInvisibles: true,
       editorAutoFormat: true,
       persistCredentials: false,
+      loadingCredentials: true,
     };
   },
   mutations: {

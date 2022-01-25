@@ -134,6 +134,7 @@ export default {
         });
       }
     }
+    this.$store.commit("updateConfig", { loadingCredentials: false });
   },
 };
 </script>

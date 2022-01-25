@@ -110,5 +110,12 @@ export default {
     this.restoreForm();
     this.webStorageSupported = typeof Storage !== "undefined";
   },
+  watch: {
+    "$store.state.loadingCredentials": function (val) {
+      if (!val) {
+        this.restoreForm();
+      }
+    },
+  },
 };
 </script>
