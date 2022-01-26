@@ -88,14 +88,24 @@
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
 
-    <v-snackbars :messages.sync="messages" :timeout="5000" bottom right app>
+    <v-snackbars
+      :messages.sync="messages"
+      :timeout="msgTimeout"
+      bottom
+      right
+      app
+    >
       <template v-slot:action="{ close }">
-        <div class="d-flex flex-column">
+        <timeout-progress
+          color="white"
+          :width="2"
+          :timeout="msgTimeout"
+          :rotate="-90"
+        >
           <v-btn icon @click="close()">
             <v-icon> mdi-close </v-icon>
           </v-btn>
-          <div class="snackbar-progress" />
-        </div>
+        </timeout-progress>
       </template>
     </v-snackbars>
   </v-app>
@@ -104,15 +114,18 @@
 <script>
 import VSnackbars from "v-snackbars";
 import executor from "awsome-doctor-core";
+import TimeoutProgress from "../components/TimeoutProgress.vue";
 
 export default {
   components: {
     "v-snackbars": VSnackbars,
+    TimeoutProgress,
   },
   data() {
     return {
       leftDrawer: true,
       messages: [],
+      msgTimeout: 5000,
     };
   },
   methods: {
@@ -147,22 +160,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.snackbar-progress {
-  animation-name: hide-snackbar-progress;
-  border-bottom: solid;
-  animation-duration: 5000ms;
-  animation-timing-function: linear;
-}
-
-@keyframes hide-snackbar-progress {
-  from {
-    width: 100%;
-  }
-
-  to {
-    width: 0%;
-  }
-}
-</style>
