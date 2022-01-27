@@ -7,12 +7,14 @@ Based on [NuxtJS](https://nuxtjs.org/) & [Vuetify](https://vuetifyjs.com/en/).
 ## Features
 
 - Workflow browser & executor.
+  - Markdown renderer powered by [marked](https://github.com/markedjs/marked).
 - [Built-in responsive workflow editor](https://discretetom.github.io/awsome-doctor/editor) powered by [ACE](https://github.com/ajaxorg/ace).
   - Code format powered by [Prettier](https://prettier.io/).
   - Syntax highlight powered by [PrismJS](https://prismjs.com/).
   - Use URL to open external workflows.
 - [File System Access API](https://web.dev/file-system-access/) in editor page.
   - _Only available in Chromium browsers._
+- PWA & Workbox caching powered by [@nuxtjs/pwa](https://pwa.nuxtjs.org/).
 
 ## Build Setup
 
