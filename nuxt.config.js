@@ -1,6 +1,14 @@
 import colors from "vuetify/es5/util/colors";
 import workflows from "./utils/workflow-loader";
 
+const workflowRoutes = [];
+for (let service in workflows) {
+  workflowRoutes.push(`/workflow/${service}/`);
+  for (let wf in workflows[service]) {
+    workflowRoutes.push(`/workflow/${service}/${wf}/`);
+  }
+}
+
 export default {
   env: {
     workflows,
@@ -83,5 +91,9 @@ export default {
 
   router: {
     base: "/awsome-doctor/",
+  },
+
+  generate: {
+    routes: workflowRoutes,
   },
 };
