@@ -37,7 +37,12 @@ fs.readdirSync(WORKFLOW_DIR, { withFileTypes: true }).map((dirent) => {
           console.log(err);
           return;
         }
-        result[file.name] = yaml.load(ymlContent);
+
+        let wfName = file.name;
+        if (wfName.endsWith(".yml")) wfName = wfName.slice(0, -".yml".length);
+        else wfName = wfName.slice(0, -".yaml".length);
+
+        result[wfName] = yaml.load(ymlContent);
       }
     });
     workflows[dirent.name] = result;
