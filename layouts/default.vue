@@ -133,11 +133,11 @@ export default {
       return window.location.href;
     },
   },
-  mounted() {
+  async mounted() {
     this.$bus.$on("append-msg", (e) => this.messages.push(e));
     this.$bus.$on("configure-aws", (arg) => {
       executor.configure({ ...arg, region: this.$store.state.region });
-      this.messages.push("AWS SDK configured.");
+      this.$bus.$emit("append-msg", "AWS SDK configured.");
     });
 
     // restore ak/sk from local storage
@@ -157,6 +157,19 @@ export default {
       }
     }
     this.$store.commit("updateConfig", { loadingCredentials: false });
+
+    // show msg when new content available
+    const workbox = await window.$workbox;
+    if (workbox) {
+      workbox.addEventListener("installed", (event) => {
+        if (event.isUpdate) {
+          this.$bus.$emit(
+            "append-msg",
+            "New content available. Please refresh this page."
+          );
+        }
+      });
+    }
   },
 };
 </script>
