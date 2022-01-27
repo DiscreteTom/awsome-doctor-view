@@ -53,6 +53,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
+    "@nuxtjs/pwa",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -95,5 +96,17 @@ export default {
 
   generate: {
     routes: workflowRoutes,
+  },
+
+  pwa: {
+    icon: false, // TODO: use an icon
+    meta: {
+      name: "Awsome Doctor",
+      description: "A browser based AWS troubleshooting tool.",
+      theme_color: "#181818",
+    },
+    manifest: {
+      name: "Awsome Doctor",
+    },
   },
 };
