@@ -2629,10 +2629,10 @@ autoprefixer@^9.6.1:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-awsome-doctor-core@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/awsome-doctor-core/-/awsome-doctor-core-0.3.1.tgz#67d91aa05d09d1af8c58c06c13f783cdeeb1f82f"
-  integrity sha512-707HV3aWjRnqsFi22Xz72AMwayJlUKd0HLVXrFxt2uTYGw/bojp/blsjUu3prSkXYPA5Ja/y3tvR8X2qqhw6XA==
+awsome-doctor-core@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/awsome-doctor-core/-/awsome-doctor-core-0.3.2.tgz#88e1207d2d5a051ee79d129bccf365ac9abf6331"
+  integrity sha512-fGvBiV1d1BLvDtrnXZXQ1zqxpvsSWj0q8ohH01qs+Fz6lVW/9kisz7Olt/g+khMKf/d3pePV/+x9pj3P6zLD3A==
   dependencies:
     "@aws-sdk/client-ec2" "^3.47.0"
     "@aws-sdk/client-elastic-load-balancing-v2" "^3.47.0"
