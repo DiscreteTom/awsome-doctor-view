@@ -307,13 +307,13 @@
             bottom
           />
           <v-toolbar-title class="ml-3">
-            Editing Workflow:
-            <span class="text-decoration-underline">
-              {{ title || "Untitled workflow" }}
-            </span>
-            Step:
+            Step {{ editingIndex + 1 }}:
             <span class="text-decoration-underline">
               {{ steps[editingIndex].name || "Untitled step" }}
+            </span>
+            Workflow:
+            <span class="text-decoration-underline">
+              {{ title || "Untitled workflow" }}
             </span>
           </v-toolbar-title>
           <v-spacer></v-spacer>
