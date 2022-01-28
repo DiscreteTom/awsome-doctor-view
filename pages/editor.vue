@@ -357,6 +357,20 @@
             <span>Format on Save</span>
           </v-tooltip>
           <tt-btn
+            tt="Previous Step"
+            icon="mdi-arrow-up"
+            @click="editingIndex--"
+            bottom
+            :disabled="editingIndex == 0"
+          />
+          <tt-btn
+            tt="Next Step"
+            icon="mdi-arrow-down"
+            @click="editingIndex++"
+            bottom
+            :disabled="editingIndex == steps.length - 1"
+          />
+          <tt-btn
             tt="Decrease Font Size"
             icon="mdi-format-font-size-decrease"
             @click="changeEditorFontSize(-1)"
