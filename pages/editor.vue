@@ -132,6 +132,14 @@
                   />
                 </v-col>
                 <v-col>
+                  <v-select
+                    label="Type"
+                    v-model="input.type"
+                    :items="['text', 'file']"
+                    hide-details
+                  />
+                </v-col>
+                <v-col>
                   <v-text-field
                     label="Placeholder"
                     v-model="input.placeholder"
@@ -535,7 +543,7 @@ export default {
       this.workflowData.push({ key: "", value: "''" });
     },
     addInput() {
-      this.inputs.push({ label: "", placeholder: "", store: "" });
+      this.inputs.push({ label: "", type: "text", placeholder: "", store: "" });
     },
     addStep() {
       this.steps.push({ name: "", js: "" });
@@ -692,6 +700,9 @@ export default {
         });
       }
       this.inputs = content.input;
+      this.inputs.map((i) => {
+        if (!i.type) i.type = "text";
+      });
       this.steps = content.steps;
       this.description = content.description || "";
     },

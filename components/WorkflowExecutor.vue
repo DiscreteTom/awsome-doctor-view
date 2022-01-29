@@ -14,13 +14,20 @@
       </v-expansion-panel>
     </v-expansion-panels>
 
-    <v-text-field
-      v-for="input in workflow.input"
-      :key="input.label"
-      :label="input.label"
-      :placeholder="input.placeholder"
-      v-model="workflowData[input.store]"
-    />
+    <div v-for="input in workflow.input" :key="input.label">
+      <v-file-input
+        v-if="input.type == 'file'"
+        :label="input.label"
+        :placeholder="input.placeholder"
+        v-model="workflowData[input.store]"
+      />
+      <v-text-field
+        v-else
+        :label="input.label"
+        :placeholder="input.placeholder"
+        v-model="workflowData[input.store]"
+      />
+    </div>
     <v-btn color="primary" @click="submit"> Submit </v-btn>
     <v-btn @click="reset" class="mx-3"> Reset </v-btn>
 
