@@ -630,10 +630,14 @@ export default {
       });
     },
     formatCode(stepIndex) {
-      this.steps[stepIndex].js = prettier.format(this.steps[stepIndex].js, {
-        parser: "babel",
-        plugins: [babelParser],
-      });
+      try {
+        this.steps[stepIndex].js = prettier.format(this.steps[stepIndex].js, {
+          parser: "babel",
+          plugins: [babelParser],
+        });
+      } catch (e) {
+        console.log(e);
+      }
     },
     async openFile() {
       if (window.showOpenFilePicker !== undefined) {
