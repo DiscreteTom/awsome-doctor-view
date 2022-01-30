@@ -135,7 +135,7 @@
                   <v-select
                     label="Type"
                     v-model="input.type"
-                    :items="['text', 'file']"
+                    :items="['text', 'file', 'password']"
                     hide-details
                   />
                 </v-col>

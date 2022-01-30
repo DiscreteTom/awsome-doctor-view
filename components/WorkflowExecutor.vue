@@ -25,6 +25,7 @@
         v-else
         :label="input.label"
         :placeholder="input.placeholder"
+        :type="input.type"
         v-model="workflowData[input.store]"
       />
     </div>
