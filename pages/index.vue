@@ -91,11 +91,6 @@ export default {
             this.clearPersistedCredentials();
         }
       }
-
-      this.$bus.$emit("configure-aws", {
-        accessKeyId: this.tempAk,
-        secretAccessKey: this.tempSk,
-      });
     },
     clearPersistedCredentials() {
       if (this.webStorageSupported) {

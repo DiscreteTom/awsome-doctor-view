@@ -106,6 +106,13 @@ export default {
       this.started = true;
       this.results = [];
 
+      // configure aws
+      executor.configure({
+        accessKeyId: this.$store.state.tempAk,
+        secretAccessKey: this.$store.state.tempSk,
+        region: this.$store.state.region,
+      });
+
       for (let i = 0; i < this.workflow.steps.length; ++i) {
         let step = this.workflow.steps[i];
         // update result

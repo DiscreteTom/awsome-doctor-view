@@ -126,7 +126,6 @@
 
 <script>
 import VSnackbars from "v-snackbars";
-import executor from "awsome-doctor-core";
 import TimeoutProgress from "../components/TimeoutProgress.vue";
 import executorInfo from "awsome-doctor-core/package.json";
 
@@ -154,10 +153,6 @@ export default {
   },
   async mounted() {
     this.$bus.$on("append-msg", (e) => this.messages.push(e));
-    this.$bus.$on("configure-aws", (arg) => {
-      executor.configure({ ...arg, region: this.$store.state.region });
-      this.$bus.$emit("append-msg", "AWS SDK configured.");
-    });
 
     // restore ak/sk from local storage
     if (typeof Storage !== "undefined") {
@@ -168,10 +163,6 @@ export default {
           persistCredentials: true,
           tempAk: ak,
           tempSk: sk,
-        });
-        this.$bus.$emit("configure-aws", {
-          accessKeyId: ak,
-          secretAccessKey: sk,
         });
       }
     }
