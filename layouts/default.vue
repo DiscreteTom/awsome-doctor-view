@@ -61,6 +61,19 @@
         </template>
         <span>Editor</span>
       </v-tooltip>
+      <!-- Info Btn -->
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on }">
+          <v-btn
+            icon
+            v-on="on"
+            href="https://github.com/DiscreteTom/awsome-doctor-core/"
+          >
+            <v-icon> mdi-information-outline </v-icon>
+          </v-btn>
+        </template>
+        <span> Core Version: {{ coreVersion }} </span>
+      </v-tooltip>
       <!-- Share Btn -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
@@ -115,6 +128,7 @@
 import VSnackbars from "v-snackbars";
 import executor from "awsome-doctor-core";
 import TimeoutProgress from "../components/TimeoutProgress.vue";
+import executorInfo from "awsome-doctor-core/package.json";
 
 export default {
   components: {
@@ -131,6 +145,11 @@ export default {
   methods: {
     getUrl() {
       return window.location.href;
+    },
+  },
+  computed: {
+    coreVersion() {
+      return executorInfo.version;
     },
   },
   async mounted() {
