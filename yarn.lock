@@ -1894,10 +1894,10 @@ aws-sdk@^2.1069.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-awsome-doctor-core@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/awsome-doctor-core/-/awsome-doctor-core-0.4.2.tgz#f857c13f76002a00da9949e49b2775457d8699f8"
-  integrity sha512-lCzeel54SAG0EiGCO4TK3ZqRq4ho/Lz+LaZCGbf3Ljv3RBe71h8fOixQ9i+0LdxvO4J0Ux9BTrsA2NlN363gxQ==
+awsome-doctor-core@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/awsome-doctor-core/-/awsome-doctor-core-0.4.3.tgz#23820693bcbc5c0a963d954c90dba384809b14a2"
+  integrity sha512-78BIWiAL7qql6haohud2//j44IqP3KuWBkvs0Tg4EfZyiTL2/GZgnQNIGkUhht9YoNQWBtj8/fvlkjnzDe9/qA==
   dependencies:
     aws-sdk "^2.1069.0"
     axios "^0.25.0"
