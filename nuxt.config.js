@@ -91,7 +91,7 @@ export default {
   build: {},
 
   router: {
-    base: "/awsome-doctor/",
+    base: process.env.TARGET == "gh-pages" ? "/awsome-doctor/" : "/",
   },
 
   generate: {
